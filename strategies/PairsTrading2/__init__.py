@@ -12,11 +12,12 @@ class PairsTrading2(Strategy):
         return self.shared_vars["s2-position"] == -1
         
     def go_long(self):
-        pass
+        qty = utils.size_to_qty(self.shared_vars["margin2"], self.price, fee_rate=self.fee_rate)
+        self.buy = qty, self.price
 
     def go_short(self):
-        # For futures trading only
-        pass
+        qty = utils.size_to_qty(self.shared_vars["margin2"], self.price, fee_rate=self.fee_rate)
+        self.sell = qty, self.price
 
     def update_position(self):
         if self.shared_vars["s2-position"] == 0:
